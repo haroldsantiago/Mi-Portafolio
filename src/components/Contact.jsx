@@ -15,10 +15,13 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    // Solución para problemas de entrada en dispositivos móviles en GitHub Pages
+    setTimeout(() => {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+    }, 0);
   };
 
   const handleSubmit = async (e) => {
@@ -99,6 +102,8 @@ const Contact = () => {
                   placeholder="Tu Nombre"
                   value={formData.name}
                   onChange={handleChange}
+                  onFocus={(e) => e.target.setAttribute('autocomplete', 'off')}
+                  autoComplete="off"
                   required
                 />
               </div>
@@ -109,6 +114,8 @@ const Contact = () => {
                   placeholder="Tu Email"
                   value={formData.email}
                   onChange={handleChange}
+                  onFocus={(e) => e.target.setAttribute('autocomplete', 'off')}
+                  autoComplete="off"
                   required
                 />
               </div>
