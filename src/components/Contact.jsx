@@ -95,7 +95,7 @@ const Contact = () => {
               <div className="form-group">
                 <input
                   type="text"
-                  name="user_name"
+                  name="name"
                   placeholder="Tu Nombre"
                   value={formData.name}
                   onChange={handleChange}
@@ -105,7 +105,7 @@ const Contact = () => {
               <div className="form-group">
                 <input
                   type="email"
-                  name="user_email"
+                  name="email"
                   placeholder="Tu Email"
                   value={formData.email}
                   onChange={handleChange}
