@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Footer.css';
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -8,10 +9,10 @@ const Footer = () => {
         <div className="footer-content">
           <p>&copy; {new Date().getFullYear()} Mi Portafolio. Todos los derechos reservados.</p>
           <div className="social-links">
-            <a href="#" className="social-icon"><i className="fab fa-github"></i></a>
-            <a href="#" className="social-icon"><i className="fab fa-linkedin"></i></a>
-            <a href="#" className="social-icon"><i className="fab fa-twitter"></i></a>
-            <a href="#" className="social-icon"><i className="fab fa-instagram"></i></a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaGithub /></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaLinkedin /></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaTwitter /></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaInstagram /></a>
           </div>
         </div>
       </div>

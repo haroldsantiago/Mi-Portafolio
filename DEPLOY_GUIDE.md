@@ -54,7 +54,7 @@ const result = await emailjs.sendForm(
 1. Asegúrate de que el campo `homepage` en package.json tenga la URL correcta:
 
 ```json
-"homepage": "https://TU_NOMBRE_DE_USUARIO.github.io/portafolio-react"
+"homepage": "https://haroldsantiago.github.io/Mi-Portafolio"
 ```
 
 2. Ejecuta el comando de despliegue:
@@ -63,7 +63,7 @@ const result = await emailjs.sendForm(
 npm run deploy
 ```
 
-3. Espera unos minutos y tu sitio estará disponible en: `https://TU_NOMBRE_DE_USUARIO.github.io/portafolio-react`
+3. Espera unos minutos y tu sitio estará disponible en: `https://haroldsantiago.github.io/Mi-Portafolio`
 
 ## Actualizar tu sitio
 

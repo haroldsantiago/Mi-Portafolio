@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
 import '../styles/Contact.css';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Contact = () => {
   const form = useRef();
@@ -32,10 +33,10 @@ const Contact = () => {
     
     try {
       const result = await emailjs.sendForm(
-        'YOUR_SERVICE_ID', // Reemplaza con tu Service ID
-        'YOUR_TEMPLATE_ID', // Reemplaza con tu Template ID
+        'service_tzn84dd', // Reemplaza con tu Service ID
+        'service_tzn84dd', // Reemplaza con tu Template ID
         form.current,
-        'YOUR_USER_ID' // Reemplaza con tu User ID (Public Key)
+        'FEE9LvNVWkA8VTfYE' // Reemplaza con tu User ID (Public Key)
       );
       
       if (result.text === 'OK') {
@@ -62,31 +63,31 @@ const Contact = () => {
         <div className="contact-container">
           <div className="contact-info">
             <div className="info-item">
-              <i className="fas fa-map-marker-alt"></i>
+              <FaMapMarkerAlt />
               <div>
                 <h3>Ubicación</h3>
-                <p>Tu Ciudad, País</p>
+                <p>Caicedonia, Colombia</p>
               </div>
             </div>
             <div className="info-item">
-              <i className="fas fa-envelope"></i>
+              <FaEnvelope />
               <div>
                 <h3>Email</h3>
-                <p>tuemail@ejemplo.com</p>
+                <p>santitover1@gmail.com</p>
               </div>
             </div>
             <div className="info-item">
-              <i className="fas fa-phone"></i>
+              <FaPhone />
               <div>
                 <h3>Teléfono</h3>
-                <p>+123 456 7890</p>
+                <p>+57 3043515689</p>
               </div>
             </div>
             <div className="social-links">
-              <a href="#" className="social-icon"><i className="fab fa-github"></i></a>
-              <a href="#" className="social-icon"><i className="fab fa-linkedin"></i></a>
-              <a href="#" className="social-icon"><i className="fab fa-twitter"></i></a>
-              <a href="#" className="social-icon"><i className="fab fa-instagram"></i></a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaGithub /></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaLinkedin /></a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaTwitter /></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaInstagram /></a>
             </div>
           </div>
           <div className="contact-form">
