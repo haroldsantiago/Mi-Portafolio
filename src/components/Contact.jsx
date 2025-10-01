@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
 import '../styles/Contact.css';
 
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,28 +24,21 @@ const Contact = () => {
     e.preventDefault();
     setStatus('sending');
     
+    // Para usar EmailJS, necesitas:
+    // 1. Crear una cuenta en https://www.emailjs.com/
+    // 2. Configurar un servicio de email (Gmail, Outlook, etc.)
+    // 3. Crear una plantilla de email
+    // 4. Obtener tus IDs (serviceID, templateID, userID)
+    
     try {
-      // Utilizamos EmailJS para enviar el correo
-      // Necesitarás registrarte en emailjs.com y configurar tu cuenta
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          service_id: 'YOUR_SERVICE_ID', // Reemplazar con tu service ID
-          template_id: 'YOUR_TEMPLATE_ID', // Reemplazar con tu template ID
-          user_id: 'YOUR_USER_ID', // Reemplazar con tu user ID
-          template_params: {
-            from_name: formData.name,
-            from_email: formData.email,
-            subject: formData.subject,
-            message: formData.message
-          }
-        })
-      });
+      const result = await emailjs.sendForm(
+        'YOUR_SERVICE_ID', // Reemplaza con tu Service ID
+        'YOUR_TEMPLATE_ID', // Reemplaza con tu Template ID
+        form.current,
+        'YOUR_USER_ID' // Reemplaza con tu User ID (Public Key)
+      );
       
-      if (response.ok) {
+      if (result.text === 'OK') {
         setStatus('success');
         setFormData({
           name: '',
@@ -95,11 +90,11 @@ const Contact = () => {
             </div>
           </div>
           <div className="contact-form">
-            <form onSubmit={handleSubmit}>
+            <form ref={form} onSubmit={handleSubmit}>
               <div className="form-group">
                 <input
                   type="text"
-                  name="name"
+                  name="user_name"
                   placeholder="Tu Nombre"
                   value={formData.name}
                   onChange={handleChange}
@@ -109,7 +104,7 @@ const Contact = () => {
               <div className="form-group">
                 <input
                   type="email"
-                  name="email"
+                  name="user_email"
                   placeholder="Tu Email"
                   value={formData.email}
                   onChange={handleChange}
