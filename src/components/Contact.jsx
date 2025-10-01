@@ -36,10 +36,10 @@ const Contact = () => {
     
     try {
       const result = await emailjs.sendForm(
-        'service_tzn84dd', // Reemplaza con tu Service ID
-        'service_tzn84dd', // Reemplaza con tu Template ID
+        'service_tzn84dd', // Tu Service ID
+        'template_7aqcnzj', // Template ID correcto
         form.current,
-        'FEE9LvNVWkA8VTfYE' // Reemplaza con tu User ID (Public Key)
+        'FEE9LvNVWkA8VTfYE' // Tu User ID (Public Key)
       );
       
       if (result.text === 'OK') {
