@@ -37,7 +37,7 @@ const Contact = () => {
     try {
       const result = await emailjs.sendForm(
         'service_tzn84dd', // Tu Service ID
-        'template_7aqcnzj', // Template ID correcto
+        'plantilla_up0b04f', // Template ID correcto
         form.current,
         'FEE9LvNVWkA8VTfYE' // Tu User ID (Public Key)
       );
