@@ -13,20 +13,20 @@ const AboutMe = () => {
             </div>
           </div>
           <div className="about-text">
-            <p>¡Hola! Soy un desarrollador web apasionado por crear experiencias digitales atractivas y funcionales. Me especializo en desarrollo frontend con React y tengo experiencia en diseño UI/UX.</p>
+            <p>¡Hola! Soy un desarrollador web apasionado por crear experiencias digitales atractivas y funcionales. Me especializo en desarrollo con React y Django ademas tengo experiencia en diseño UI/UX.</p>
             <p>Mi objetivo es combinar creatividad y tecnología para construir soluciones que no solo se vean bien, sino que también resuelvan problemas reales.</p>
             <div className="about-details">
               <div className="detail-item">
                 <h4>Nombre:</h4>
-                <p>Tu Nombre Completo</p>
+                <p>Harold Santiago Vergara Torres</p>
               </div>
               <div className="detail-item">
                 <h4>Email:</h4>
-                <p>tuemail@ejemplo.com</p>
+                <p>santitover1@gmail.com</p>
               </div>
               <div className="detail-item">
                 <h4>Ubicación:</h4>
-                <p>Tu Ciudad, País</p>
+                <p>Caicedonia, Colombia</p>
               </div>
               <div className="detail-item">
                 <h4>Disponibilidad:</h4>

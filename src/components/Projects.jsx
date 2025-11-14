@@ -5,19 +5,19 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Proyecto 1',
-      description: 'Descripción breve del proyecto 1. Tecnologías utilizadas y resultados obtenidos.',
+      title: 'Proyecto SRP',
+      description: 'Proyecto dedicado a la gestion de notas y gestion administrativa del colegio Rafael Pombo de Tulua, Valle del Cauca.',
       image: 'project1.jpg',
-      tags: ['React', 'CSS', 'JavaScript'],
+      tags: ['React', 'CSS', 'JavaScript', 'Django', 'Python', 'MySQL'],
       demoLink: '#',
       codeLink: '#'
     },
     {
       id: 2,
-      title: 'Proyecto 2',
-      description: 'Descripción breve del proyecto 2. Tecnologías utilizadas y resultados obtenidos.',
+      title: 'RICA',
+      description: 'Proyecto dedicado al control de acceso y regitro de usuarios de la Universidad del Valle sede Caicedonia y Nodo Sevilla',
       image: 'project2.jpg',
-      tags: ['HTML', 'SASS', 'JavaScript'],
+      tags: ['React', 'CSS', 'JavaScript', 'Django', 'Python', 'MySQL'],
       demoLink: '#',
       codeLink: '#'
     },
