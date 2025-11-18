@@ -21,3 +21,23 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Python/Django
+__pycache__/
+*.py[cod]
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+db.sqlite3
+media/
+staticfiles/
+.env
+**/.env
