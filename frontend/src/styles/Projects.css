@@ -10,6 +10,7 @@
   overflow: hidden;
   box-shadow: var(--box-shadow);
   transition: var(--transition);
+  border: 0;
 }
 
 .project-card:hover {
@@ -19,6 +20,15 @@
 
 .project-image {
   height: 200px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  outline: none;
 }
 
 .project-info {
@@ -34,6 +44,7 @@
 .project-info p {
   margin-bottom: 20px;
   color: var(--secondary-color);
+  overflow-wrap: anywhere;
 }
 
 .project-tags {
@@ -61,4 +72,8 @@
   .projects-grid {
     grid-template-columns: 1fr;
   }
+}
+.project-card:focus,
+.project-card:focus-within {
+  outline: none;
 }

@@ -79,6 +79,24 @@ git push origin main
 2. Vuelve a desplegar:
 ```bash
 npm run deploy
+
+## Certificaciones: arquitectura y rutas
+
+- Las imágenes de certificaciones deben ubicarse en `public/certifications/`.
+- El componente `Certifications` carga dinámicamente el manifest `public/certifications/certifications.json`.
+- Estructura recomendada:
+  - `public/certifications/`
+    - `certifications.json`
+    - `cert1.jpg`, `cert2.jpg`, ...
+- Ejemplo de `certifications.json`:
+```
+[
+  { "src": "/certifications/cert1.jpg", "alt": "Certificación AWS", "fullSrc": "/certifications/cert1.jpg" },
+  { "src": "/certifications/cert2.jpg", "alt": "Scrum Master", "fullSrc": "/certifications/cert2.jpg" }
+]
+```
+- El componente resuelve rutas usando `process.env.PUBLIC_URL`, por lo que funciona en desarrollo (`http://localhost:3000`) y en producción (GitHub Pages con base path del `homepage`).
+- Para agregar nuevas certificaciones, añade la imagen a `public/certifications/` y un objeto en el `certifications.json`.
 ```
 
 ¡Listo! Tu portafolio ahora está disponible en línea para que puedas compartirlo con el mundo.

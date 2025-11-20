@@ -9,7 +9,7 @@ const AboutMe = () => {
         <div className="about-content">
           <div className="about-image">
             <div className="image-placeholder">
-              {/* Aquí puedes colocar tu foto */}
+              <img src={process.env.PUBLIC_URL + '/fotomia.jpg'} alt="Sobre mí" />
             </div>
           </div>
           <div className="about-text">

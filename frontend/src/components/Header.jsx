@@ -12,7 +12,9 @@ const Header = () => {
             <li><a href="#sobre-mi">Sobre Mí</a></li>
             <li><a href="#proyectos">Proyectos</a></li>
             <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#certificaciones">Certificaciones</a></li>
             <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#reviews">Reseñas</a></li>
           </ul>
         </nav>
       </div>

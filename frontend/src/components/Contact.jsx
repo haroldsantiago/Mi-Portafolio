@@ -96,7 +96,9 @@ const Contact = () => {
           <div className="contact-form">
             <form ref={form} onSubmit={handleSubmit}>
               <div className="form-group">
+                <label htmlFor="name">Nombre</label>
                 <input
+                  id="name"
                   type="text"
                   name="name"
                   placeholder="Tu Nombre"
@@ -108,7 +110,9 @@ const Contact = () => {
                 />
               </div>
               <div className="form-group">
+                <label htmlFor="email">Email</label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
                   placeholder="Tu Email"
@@ -120,7 +124,9 @@ const Contact = () => {
                 />
               </div>
               <div className="form-group">
+                <label htmlFor="subject">Asunto</label>
                 <input
+                  id="subject"
                   type="text"
                   name="subject"
                   placeholder="Asunto"
@@ -130,7 +136,9 @@ const Contact = () => {
                 />
               </div>
               <div className="form-group">
+                <label htmlFor="message">Mensaje</label>
                 <textarea
+                  id="message"
                   name="message"
                   placeholder="Tu Mensaje"
                   value={formData.message}

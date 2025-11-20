@@ -4,3 +4,4 @@ PyMySQL
 gunicorn
 django-cors-headers
 whitenoise
+cryptography

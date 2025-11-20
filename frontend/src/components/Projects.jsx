@@ -7,7 +7,7 @@ const Projects = () => {
       id: 1,
       title: 'Proyecto SRP',
       description: 'Proyecto dedicado a la gestion de notas y gestion administrativa del colegio Rafael Pombo de Tulua, Valle del Cauca.',
-      image: 'project1.jpg',
+      image: 'SRP.png',
       tags: ['React', 'CSS', 'JavaScript', 'Django', 'Python', 'MySQL'],
       demoLink: '#',
       codeLink: '#'
@@ -16,7 +16,7 @@ const Projects = () => {
       id: 2,
       title: 'RICA',
       description: 'Proyecto dedicado al control de acceso y regitro de usuarios de la Universidad del Valle sede Caicedonia y Nodo Sevilla',
-      image: 'project2.jpg',
+      image: 'RICA.png',
       tags: ['React', 'CSS', 'JavaScript', 'Django', 'Python', 'MySQL'],
       demoLink: '#',
       codeLink: '#'
@@ -25,7 +25,7 @@ const Projects = () => {
       id: 3,
       title: 'Proyecto 3',
       description: 'Descripción breve del proyecto 3. Tecnologías utilizadas y resultados obtenidos.',
-      image: 'project3.jpg',
+      image: 'logo192.png',
       tags: ['React', 'Node.js', 'MongoDB'],
       demoLink: '#',
       codeLink: '#'
@@ -40,9 +40,13 @@ const Projects = () => {
           {projects.map(project => (
             <div className="project-card" key={project.id}>
               <div className="project-image">
-                <div className="image-placeholder">
-                  {/* Aquí irá la imagen del proyecto */}
-                </div>
+                {project.image ? (
+                  <img src={(process.env.PUBLIC_URL || '') + '/' + (project.image.replace(/^public\//, ''))} alt={project.title} />
+                ) : (
+                  <div className="image-placeholder">
+                    {/* Aquí irá la imagen del proyecto */}
+                  </div>
+                )}
               </div>
               <div className="project-info">
                 <h3>{project.title}</h3>
