@@ -5,3 +5,6 @@ gunicorn
 django-cors-headers
 whitenoise
 cryptography
+
+dj-database-url
+mysqlclient       # si vas a usar MySQL
