@@ -53,5 +53,11 @@
     "src": "/certifications/ReconocedorPredial.jpg",
     "alt": "Reconocedor Predial",
     "fullSrc": "/certifications/ReconocedorPredial.jpg"
+  },
+  {
+    "src": "/certifications/seguridadPrivacidad.jpg",
+    "alt": "Seguridad y Privacidad",
+    "fullSrc": "/certifications/seguridadPrivacidad.jpg"
   }
+  
 ]
