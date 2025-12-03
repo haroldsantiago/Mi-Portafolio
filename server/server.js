@@ -10,12 +10,13 @@ const app = express()
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-app.use(cors())
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean)
+app.use(cors({ origin: allowedOrigins.length ? allowedOrigins : '*' }))
 app.use(express.json())
 
 // Configuración de Supabase
 const supabaseUrl = process.env.SUPABASE_URL
-const supabaseKey = process.env.SUPABASE_KEY
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY
 
 if (!supabaseUrl || !supabaseKey) {
   console.error('❌ Faltan credenciales de Supabase en .env')
