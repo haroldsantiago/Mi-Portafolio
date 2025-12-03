@@ -33,4 +33,4 @@ app.post("/api/reviews", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`✅ Servidor en https://restaurante-3hur.onrender.com/${PORT}`));
+app.listen(PORT, () => console.log(`✅ Servidor en https://mi-portafolio-1tok.onrender.com/${PORT}`));

@@ -12,6 +12,7 @@ const Reviews = () => {
     const [hoveredRating, setHoveredRating] = useState(0);
     const [submitting, setSubmitting] = useState(false);
     const [message, setMessage] = useState({ text: '', type: '' });
+    const API_URL = (process.env.REACT_APP_API_URL || 'http://localhost:8000').replace(/\/$/, '');
 
     // Fetch reviews on component mount
     useEffect(() => {
@@ -20,7 +21,7 @@ const Reviews = () => {
 
     const fetchReviews = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/reviews/');
+            const response = await fetch(`${API_URL}/api/reviews/`);
             const data = await response.json();
             if (response.ok) {
                 setReviews(data.reviews || []);
@@ -44,7 +45,7 @@ const Reviews = () => {
         setMessage({ text: '', type: '' });
 
         try {
-            const response = await fetch('http://localhost:8000/api/reviews/create/', {
+            const response = await fetch(`${API_URL}/api/reviews/create/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
