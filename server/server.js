@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 4000;
 
 // Middleware
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean)
-app.use(cors({ origin: allowedOrigins.length ? allowedOrigins : '*' }))
+app.use(cors())
 app.use(express.json())
 
 // Configuración de Supabase
