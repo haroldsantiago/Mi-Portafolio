@@ -12,31 +12,45 @@ const Reviews = () => {
     const [hoveredRating, setHoveredRating] = useState(0);
     const [submitting, setSubmitting] = useState(false);
     const [message, setMessage] = useState({ text: '', type: '' });
-    const API_URL = (process.env.REACT_APP_API_URL || 'http://localhost:8000').replace(/\/$/, '');
 
-    // Fetch reviews on component mount
+    // -------- CONFIG SUPABASE --------
+    const SUPABASE_URL = "https://ksjwtxecljymenyggfvb.supabase.co";
+    const SUPABASE_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtzand0eGVjbGp5bWVueWdnZnZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI5MDUwOTAsImV4cCI6MjA3ODQ4MTA5MH0.VFSKOm_fBWD2UhqUwv_N3P8XxAI23lPlgaLCLQ3k9Wk";
+
+    const headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json"
+    };
+
+    // -------- FETCH REVIEWS --------
     useEffect(() => {
         fetchReviews();
     }, []);
 
     const fetchReviews = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/reviews`);
+            const response = await fetch(
+                `${SUPABASE_URL}/rest/v1/reviews?select=*`,
+                { headers }
+            );
+
             const data = await response.json();
+
             if (response.ok) {
-                const list = Array.isArray(data) ? data : (data.reviews || []);
-                const normalized = list.map(r => ({ ...r, comment: r.comment ?? r.message }))
-                setReviews(normalized);
+                setReviews(data);
             } else {
-                setMessage({ text: data.error || 'No se pudieron cargar las reseñas', type: 'error' });
+                setMessage({ text: "No se pudieron cargar las reseñas", type: "error" });
             }
         } catch (error) {
-            console.error('Error fetching reviews:', error);
+            console.error("Error fetching reviews:", error);
         } finally {
             setLoading(false);
         }
     };
 
+    // -------- SUBMIT REVIEW --------
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -49,34 +63,31 @@ const Reviews = () => {
         setMessage({ text: '', type: '' });
 
         try {
-            const response = await fetch(`${API_URL}/api/reviews`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
+                method: "POST",
+                headers,
                 body: JSON.stringify({
-                  name: formData.name,
-                  email: undefined,
-                  message: formData.comment,
-                  rating: formData.rating
+                    name: formData.name,
+                    comment: formData.comment,
+                    rating: formData.rating,
                 })
             });
 
-            const data = await response.json();
-
             if (response.ok) {
-                setMessage({ text: '¡Gracias por tu reseña!', type: 'success' });
-                setFormData({ name: '', rating: 0, comment: '' });
+                setMessage({ text: "¡Gracias por tu reseña!", type: "success" });
+                setFormData({ name: "", rating: 0, comment: "" });
                 fetchReviews();
             } else {
-                setMessage({ text: (data && (data.error || data.message)) || 'Error al enviar la reseña', type: 'error' });
+                setMessage({ text: "Error al enviar la reseña", type: "error" });
             }
         } catch (error) {
-            setMessage({ text: 'Error de conexión. Intenta de nuevo.', type: 'error' });
+            setMessage({ text: "Error de conexión. Intenta de nuevo.", type: "error" });
         } finally {
             setSubmitting(false);
         }
     };
+
+    // -------- HANDLERS --------
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -127,7 +138,7 @@ const Reviews = () => {
                 <h2 className="section-title">Reseñas y Testimonios</h2>
                 <p className="section-subtitle">Lo que otros dicen sobre mi trabajo</p>
 
-                {/* Review Form */}
+                {/* FORMULARIO */}
                 <div className="review-form-container">
                     <h3>Deja tu Reseña</h3>
                     <form onSubmit={handleSubmit} className="review-form">
@@ -175,9 +186,10 @@ const Reviews = () => {
                     </form>
                 </div>
 
-                {/* Reviews List */}
+                {/* LISTA DE RESEÑAS */}
                 <div className="reviews-list">
                     <h3>Reseñas Recientes</h3>
+
                     {loading ? (
                         <div className="loading">Cargando reseñas...</div>
                     ) : reviews.length === 0 ? (
@@ -198,8 +210,10 @@ const Reviews = () => {
                                                 <span className="review-date">{formatDate(review.created_at)}</span>
                                             </div>
                                         </div>
+
                                         {renderStars(review.rating, false, 'small')}
                                     </div>
+
                                     <p className="review-comment">{review.comment}</p>
                                 </div>
                             ))}

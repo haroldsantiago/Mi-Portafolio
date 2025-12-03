@@ -31,7 +31,9 @@ function Certifications() {
           const mapped = data.map(d => ({
             src: (process.env.PUBLIC_URL || '') + (d.src || ''),
             alt: d.alt || 'Certificación',
-            fullSrc: d.fullSrc ? (process.env.PUBLIC_URL || '') + d.fullSrc : undefined,
+            fullSrc: d.fullSrc
+              ? (process.env.PUBLIC_URL || '') + d.fullSrc
+              : ((process.env.PUBLIC_URL || '') + (d.src || '')),
           }))
           setItems(mapped)
         } else {
@@ -41,49 +43,98 @@ function Certifications() {
       .catch(() => setItems([]))
   }, [])
 
-  // Se evita hacer focus automático para no provocar scroll al cargar
-
   useEffect(() => {
     const handler = e => {
-      if (lightbox) return
+      if (lightbox) {
+        if (e.key === 'Escape') setLightbox(null)
+        return
+      }
       if (e.key === 'ArrowLeft') prev()
       if (e.key === 'ArrowRight') next()
-      if (e.key === 'Escape') setLightbox(null)
     }
+
     window.addEventListener('keydown', handler)
-    return () => {
-      window.removeEventListener('keydown', handler)
-    }
+    return () => window.removeEventListener('keydown', handler)
   }, [index, total, lightbox])
 
   return (
-    <section id="certificaciones" className="certifications" ref={containerRef} tabIndex={0} aria-label="Certificaciones">
+    <section
+      id="certificaciones"
+      className="certifications"
+      ref={containerRef}
+      tabIndex={0}
+      aria-label="Certificaciones"
+    >
       <h2 className="section-title">Certificaciones</h2>
+
       <div className="carousel">
-        <button type="button" className="nav prev" onClick={prev} aria-label="Anterior" disabled={total <= 1}>‹</button>
+        <button
+          type="button"
+          className="nav prev"
+          onClick={prev}
+          aria-label="Anterior"
+          disabled={total <= 1}
+        >
+          ‹
+        </button>
+
         <div className="viewport">
           <div className="slides" style={{ transform: `translateX(-${index * 100}%)` }}>
             {items.map((item, i) => (
               <div className="slide" key={i}>
-                <img src={item.src} alt={item.alt || 'Certificación'} onClick={() => setLightbox(item)} />
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  onClick={() => setLightbox(item)}
+                />
               </div>
             ))}
           </div>
         </div>
-        <button type="button" className="nav next" onClick={next} aria-label="Siguiente" disabled={total <= 1}>›</button>
+
+        <button
+          type="button"
+          className="nav next"
+          onClick={next}
+          aria-label="Siguiente"
+          disabled={total <= 1}
+        >
+          ›
+        </button>
       </div>
+
       <div className="dots" role="tablist" aria-label="Paginación">
         {items.map((_, i) => (
-          <button key={i} className={`dot ${i === index ? 'active' : ''}`} onClick={() => setIndex(i)} aria-label={`Ir a la certificación ${i + 1}`} aria-selected={i === index} role="tab" />
+          <button
+            key={i}
+            className={`dot ${i === index ? 'active' : ''}`}
+            onClick={() => setIndex(i)}
+            aria-label={`Ir a la certificación ${i + 1}`}
+            aria-selected={i === index}
+            role="tab"
+          />
         ))}
       </div>
+
       {lightbox && (
-        <div className="lightbox" onClick={() => setLightbox(null)} role="dialog" aria-modal="true">
-          <img src={lightbox.fullSrc || lightbox.src} alt={lightbox.alt || 'Certificación'} />
+        <div
+          className="lightbox"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <img
+            src={lightbox.fullSrc}
+            alt={lightbox.alt}
+            className="lightbox-img"
+          />
         </div>
       )}
+
       {items.length === 0 && (
-        <p className="empty-hint">Agrega imágenes y un archivo certifications.json en public/certifications.</p>
+        <p className="empty-hint">
+          Agrega imágenes y un archivo <b>certifications.json</b> en <b>public/certifications</b>.
+        </p>
       )}
     </section>
   )
