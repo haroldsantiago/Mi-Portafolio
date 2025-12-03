@@ -21,10 +21,14 @@ const Reviews = () => {
 
     const fetchReviews = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/reviews/`);
+            const response = await fetch(`${API_URL}/api/reviews`);
             const data = await response.json();
             if (response.ok) {
-                setReviews(data.reviews || []);
+                const list = Array.isArray(data) ? data : (data.reviews || []);
+                const normalized = list.map(r => ({ ...r, comment: r.comment ?? r.message }))
+                setReviews(normalized);
+            } else {
+                setMessage({ text: data.error || 'No se pudieron cargar las reseñas', type: 'error' });
             }
         } catch (error) {
             console.error('Error fetching reviews:', error);
@@ -45,12 +49,17 @@ const Reviews = () => {
         setMessage({ text: '', type: '' });
 
         try {
-            const response = await fetch(`${API_URL}/api/reviews/create/`, {
+            const response = await fetch(`${API_URL}/api/reviews`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                  name: formData.name,
+                  email: undefined,
+                  message: formData.comment,
+                  rating: formData.rating
+                })
             });
 
             const data = await response.json();
@@ -58,9 +67,9 @@ const Reviews = () => {
             if (response.ok) {
                 setMessage({ text: '¡Gracias por tu reseña!', type: 'success' });
                 setFormData({ name: '', rating: 0, comment: '' });
-                fetchReviews(); // Refresh reviews list
+                fetchReviews();
             } else {
-                setMessage({ text: data.error || 'Error al enviar la reseña', type: 'error' });
+                setMessage({ text: (data && (data.error || data.message)) || 'Error al enviar la reseña', type: 'error' });
             }
         } catch (error) {
             setMessage({ text: 'Error de conexión. Intenta de nuevo.', type: 'error' });
