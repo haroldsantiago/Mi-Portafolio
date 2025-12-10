@@ -58,6 +58,20 @@
     "src": "/certifications/seguridadPrivacidad.jpg",
     "alt": "Seguridad y Privacidad",
     "fullSrc": "/certifications/seguridadPrivacidad.jpg"
+  },
+  {
+    "src": "/certifications/Copernicus.png",
+    "alt": "Copernicus",
+    "fullSrc": "/certifications/Copernicus.png"
+  },
+  {
+    "src": "/certifications/InglesA2.png",
+    "alt": "Inglés A2",
+    "fullSrc": "/certifications/InglesA2.png"
+  },
+  {
+    "src": "/certifications/Contaduria.png",
+    "alt": "Contaduría",
+    "fullSrc": "/certifications/Contaduria.png"
   }
-  
 ]
