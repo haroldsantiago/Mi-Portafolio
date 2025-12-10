@@ -21,15 +21,6 @@ const Projects = () => {
       demoLink: '#',
       codeLink: '#'
     },
-    {
-      id: 3,
-      title: 'Proyecto 3',
-      description: 'Descripción breve del proyecto 3. Tecnologías utilizadas y resultados obtenidos.',
-      image: 'logo192.png',
-      tags: ['React', 'Node.js', 'MongoDB'],
-      demoLink: '#',
-      codeLink: '#'
-    }
   ];
 
   return (
